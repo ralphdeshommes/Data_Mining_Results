@@ -1,0 +1,220 @@
+============================================================
+DATA EXPLORATION
+============================================================
+
+Dataset Shape: (201, 11)
+
+First 5 rows:
+    fLength    fWidth   fSize   fConc  ...  fM3Trans   fAlpha     fDist  class
+0   28.7967   16.0021  2.6449  0.3918  ...   -8.2027  40.0920   81.8828      g
+1   31.6036   11.7235  2.5185  0.5303  ...   -9.9574   6.3609  205.2610      g
+2  162.0520  136.0310  4.0612  0.0374  ...  -45.2160  76.9600  256.7880      g
+3   23.8172    9.5728  2.3385  0.6147  ...   -7.1513  10.4490  116.7370      g
+4   75.1362   30.9205  3.1611  0.3168  ...   21.8393   4.6480  356.4620      g
+
+[5 rows x 11 columns]
+
+Dataset Info:
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 201 entries, 0 to 200
+Data columns (total 11 columns):
+ #   Column    Non-Null Count  Dtype  
+---  ------    --------------  -----  
+ 0   fLength   201 non-null    float64
+ 1   fWidth    201 non-null    float64
+ 2   fSize     201 non-null    float64
+ 3   fConc     201 non-null    float64
+ 4   fConc1    201 non-null    float64
+ 5   fAsym     201 non-null    float64
+ 6   fM3Long   201 non-null    float64
+ 7   fM3Trans  201 non-null    float64
+ 8   fAlpha    201 non-null    float64
+ 9   fDist     201 non-null    float64
+ 10  class     201 non-null    object 
+dtypes: float64(10), object(1)
+memory usage: 17.4+ KB
+None
+
+Descriptive Statistics:
+          fLength      fWidth       fSize  ...    fM3Trans      fAlpha       fDist
+count  201.000000  201.000000  201.000000  ...  201.000000  201.000000  201.000000
+mean    57.675030   24.015214    2.873639  ...    1.791702   31.526518  197.804527
+std     42.032257   22.612183    0.475680  ...   21.539252   28.734995   79.758809
+min     10.140200    3.437800    2.102100  ... -103.610000    0.084000   32.682700
+25%     27.674600   12.081700    2.523700  ...  -10.810000    6.360900  146.512000
+50%     41.400100   17.775000    2.796600  ...    2.980800   20.757400  195.950000
+75%     79.142900   26.250700    3.128100  ...   12.484600   56.667900  251.280000
+max    271.437000  190.139000    4.609400  ...   90.618300   89.870200  417.026100
+
+[8 rows x 10 columns]
+
+Class Distribution:
+class
+g    101
+h    100
+Name: count, dtype: int64
+
+Missing Values:
+fLength     0
+fWidth      0
+fSize       0
+fConc       0
+fConc1      0
+fAsym       0
+fM3Long     0
+fM3Trans    0
+fAlpha      0
+fDist       0
+class       0
+dtype: int64
+
+============================================================
+DATA VISUALIZATION
+============================================================
+Saved: class_distribution.png
+Saved: correlation_heatmap.png
+Saved: feature_boxplots.png
+
+============================================================
+DATA PREPROCESSING
+============================================================
+Features shape: (201, 10)
+Target shape: (201,)
+
+Training set size: 140
+Testing set size: 61
+Training class distribution: (array(['g', 'h'], dtype=object), array([70, 70]))
+Testing class distribution: (array(['g', 'h'], dtype=object), array([31, 30]))
+
+Feature scaling completed
+
+============================================================
+MODEL TRAINING AND EVALUATION
+============================================================
+
+--- K-Nearest Neighbors ---
+Accuracy: 0.6557
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           g       0.62      0.81      0.70        31
+           h       0.71      0.50      0.59        30
+
+    accuracy                           0.66        61
+   macro avg       0.67      0.65      0.65        61
+weighted avg       0.67      0.66      0.65        61
+
+
+Confusion Matrix:
+[[25  6]
+ [15 15]]
+
+--- Decision Tree ---
+Accuracy: 0.7377
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           g       0.76      0.71      0.73        31
+           h       0.72      0.77      0.74        30
+
+    accuracy                           0.74        61
+   macro avg       0.74      0.74      0.74        61
+weighted avg       0.74      0.74      0.74        61
+
+
+Confusion Matrix:
+[[22  9]
+ [ 7 23]]
+
+--- Random Forest ---
+Accuracy: 0.7541
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           g       0.77      0.74      0.75        31
+           h       0.74      0.77      0.75        30
+
+    accuracy                           0.75        61
+   macro avg       0.75      0.75      0.75        61
+weighted avg       0.75      0.75      0.75        61
+
+
+Confusion Matrix:
+[[23  8]
+ [ 7 23]]
+
+Feature Importance:
+    feature  importance
+8    fAlpha    0.262664
+0   fLength    0.135023
+1    fWidth    0.103109
+6   fM3Long    0.095826
+2     fSize    0.093913
+5     fAsym    0.071215
+7  fM3Trans    0.062799
+3     fConc    0.060701
+4    fConc1    0.059196
+9     fDist    0.055554
+
+--- Naive Bayes ---
+Accuracy: 0.6066
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           g       0.58      0.81      0.68        31
+           h       0.67      0.40      0.50        30
+
+    accuracy                           0.61        61
+   macro avg       0.62      0.60      0.59        61
+weighted avg       0.62      0.61      0.59        61
+
+
+Confusion Matrix:
+[[25  6]
+ [18 12]]
+
+--- Support Vector Machine ---
+Accuracy: 0.7213
+
+Classification Report:
+              precision    recall  f1-score   support
+
+           g       0.69      0.81      0.75        31
+           h       0.76      0.63      0.69        30
+
+    accuracy                           0.72        61
+   macro avg       0.73      0.72      0.72        61
+weighted avg       0.73      0.72      0.72        61
+
+
+Confusion Matrix:
+[[25  6]
+ [11 19]]
+
+============================================================
+MODEL COMPARISON
+============================================================
+
+Model Accuracies:
+        Model  Accuracy
+Random Forest  0.754098
+Decision Tree  0.737705
+          SVM  0.721311
+          KNN  0.655738
+  Naive Bayes  0.606557
+
+Saved: model_comparison.png
+
+============================================================
+SUMMARY
+============================================================
+
+Best Model: Random Forest
+Best Accuracy: 0.7541
+
+All visualizations have been saved to the current directory.
+Analysis complete!
