@@ -9,6 +9,9 @@ A scikit-learn pipeline that classifies telescope events as **gamma rays** (sign
 4. Reports accuracy, precision, recall, F1, and a confusion matrix for each, plus Random Forest feature importances and a comparison chart.
 
 ## Results (61 held-out test events)
+
+![Model comparison](results/model_comparison.png)
+
 | Model | Accuracy |
 |---|---|
 | Random Forest | 75.4% |
@@ -29,7 +32,7 @@ The dataset is balanced (101 gamma, 100 hadron), so chance is about 50%.
 pip install pandas numpy matplotlib seaborn scikit-learn
 python magic_classifier.py
 ```
-Plots are written to the current folder.
+Plots are written to the `results/` folder.
 
 ## Data
 MAGIC Gamma Telescope dataset, UCI Machine Learning Repository: https://archive.ics.uci.edu/dataset/159/magic+gamma+telescope

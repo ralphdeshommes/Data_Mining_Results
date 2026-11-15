@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,6 +14,7 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 from sklearn.metrics import precision_score, recall_score, f1_score
 
 # Load the telescope data
+os.makedirs('results', exist_ok=True)
 df = pd.read_csv('telescope_data.csv')
 
 # 1. DATA EXPLORATION
@@ -43,7 +45,7 @@ plt.title('Class Distribution')
 plt.xlabel('Class')
 plt.ylabel('Count')
 plt.tight_layout()
-plt.savefig('class_distribution.png')
+plt.savefig('results/class_distribution.png')
 print("Saved: class_distribution.png")
 
 # Correlation heatmap
@@ -55,7 +57,7 @@ correlation = df_numeric.corr()
 sns.heatmap(correlation, annot=False, cmap='coolwarm', center=0)
 plt.title('Feature Correlation Heatmap')
 plt.tight_layout()
-plt.savefig('correlation_heatmap.png')
+plt.savefig('results/correlation_heatmap.png')
 print("Saved: correlation_heatmap.png")
 
 # Feature distributions
@@ -68,7 +70,7 @@ for idx, feature in enumerate(features):
         axes[idx].set_title(f'{feature} by Class')
         axes[idx].set_xlabel('Class')
 plt.tight_layout()
-plt.savefig('feature_boxplots.png')
+plt.savefig('results/feature_boxplots.png')
 print("Saved: feature_boxplots.png")
 
 # 3. DATA PREPROCESSING
@@ -200,7 +202,7 @@ plt.title('Model Comparison')
 plt.xticks(rotation=45, ha='right')
 plt.ylim([0, 1.0])
 plt.tight_layout()
-plt.savefig('model_comparison.png')
+plt.savefig('results/model_comparison.png')
 print("\nSaved: model_comparison.png")
 
 # 6. SUMMARY
@@ -211,5 +213,5 @@ best_model = results_df.iloc[0]['Model']
 best_accuracy = results_df.iloc[0]['Accuracy']
 print(f"\nBest Model: {best_model}")
 print(f"Best Accuracy: {best_accuracy:.4f}")
-print("\nAll visualizations have been saved to the current directory.")
+print("\nAll visualizations have been saved to the results/ folder.")
 print("Analysis complete!")
